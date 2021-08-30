@@ -10,7 +10,7 @@ include 'library/DBConnection.php';
 
 
 // sql to delete a record
-$sql = "DELETE FROM student WHERE id=?";
+$sql = "DELETE FROM publisher WHERE id=?";
 
 $stmt=$conn->prepare($sql);
 
@@ -18,12 +18,11 @@ $stmt->bind_param("i", $id);
 
 $id = $_GET['id'];
 
-
 $stmt->execute();
 $conn->close();
 
 
-header("Location: index.php");
+header("Location: PublisherList.php");
  
 
 

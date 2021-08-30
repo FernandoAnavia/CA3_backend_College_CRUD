@@ -34,7 +34,7 @@ include 'NavBar.php';
 ?>
     <div class="container">
     
-    <h1>Book Store </h1>
+    <h1>Student List </h1>
         <form action='' method="GET">
             <div class="row ">
                 <div class="col-5">

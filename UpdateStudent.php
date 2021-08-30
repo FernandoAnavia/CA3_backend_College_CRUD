@@ -2,7 +2,7 @@
 include 'library/DBConnection.php';
 
 
-$sql = "SELECT * FROM book WHERE id=".$_GET['id'];
+$sql = "SELECT a.id, a.name, a.surname, a.address, a.phoneNumber, a.dob, a.collegeId, b.nameC, a.bachelorId, c.nameB, a.gender FROM (student a LEFT JOIN collegebrach b ON a.collegeid = b.id) LEFT JOIN bachelorprogram c ON a.bachelorid = c.id WHERE a.id=".$_GET['id'];
 
 $result = $conn->query($sql);
 
@@ -12,6 +12,9 @@ if($result->num_rows==0){
 }
 
 $row=$result->fetch_assoc();
+$bachName = $row['nameB'];
+$collName = $row['nameC'];
+$gender = $row['gender'];
 
 
 ?>
@@ -19,7 +22,7 @@ $row=$result->fetch_assoc();
 <!DOCTYPE html>
 <html>
 <head>
-<title>Update Book</title>
+<title>Update Student</title>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 <!-- JavaScript Bundle with Popper -->
@@ -36,29 +39,88 @@ $row=$result->fetch_assoc();
     ?>
     <div class="container">
         
-        <h1>Update book</h1>
-        <form action="EditBook.php" method="POST">
+        <h1>Update Student</h1>
+        <form action="EditStudent.php" method="POST">
             <input type="hidden" value="<?=$_GET['id']?>" name="id">
             <div class="mb-3">
-                <label for="name" class="form-label">Book Name</label>
+                <label for="name" class="form-label">Student Name</label>
                 <input type="text" class="form-control" id="name" name="name" aria-describedby="nameHelp" value="<?= $row['name'] ?>">
             </div>
             <div class="mb-3">
-                <label for="author" class="form-label">Author</label>
-                <input type="text" class="form-control" id="author" name="author" aria-describedby="authorHelp" value="<?= $row['author']?>">
+                <label for="surname" class="form-label">Student Surname</label>
+                <input type="text" class="form-control" id="surname" name="surname" aria-describedby="surnameHelp" value="<?= $row['surname']?>">
             </div>
             <div class="mb-3">
-                <label for="publisher" class="form-label">Publisher</label>
-                <input type="text" class="form-control" id="publisher" name="publisher" aria-describedby="publisherHelp" value="<?=$row['publisher'] ?>">
+                <label for="address" class="form-label">Address</label>
+                <input type="text" class="form-control" id="address" name="address" aria-describedby="addressHelp" value="<?= $row['address'] ?>">
             </div>
             <div class="mb-3">
-                <label for="isbn" class="form-label">ISBN</label>
-                <input type="text" class="form-control" id="isbn" name="isbn" aria-describedby="isbnHelp" value="<?= $row['isbn']?>">
+                <label for="phoneNumber" class="form-label">Phone Number</label>
+                <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" aria-describedby="phoneNumberHelp" value="<?= $row['phoneNumber'] ?>">
             </div>
             <div class="mb-3">
-                <label for="published_date" class="form-label">Published Date</label>
-                <input type="text" class="form-control" id="published_date" name="published_date" aria-describedby="published_dateHelp" value="<?= $row['published_date']?>">
+                <label for="dob" class="form-label">Date of Birth</label>
+                <input type="text" class="form-control" id="dob" name="dob" aria-describedby="dobHelp" value="<?= $row['dob'] ?>">
             </div>
+            
+            <div class="mb-3">
+                <label for="collegeId" class="form-label">College Branch</label>
+
+                <select class="form-select" aria-label="collegeId" name="collegeId" id="collegeId">
+
+                    <?php
+
+                        $sql = "SELECT id, nameC FROM collegebrach";
+                        $result = $conn->query($sql);
+                        while($row=$result->fetch_assoc()){
+                            if($collName == $row['nameC'])
+                            {
+                            echo "<option selected='selected' value='".$row['id']."'>".$row['nameC']."</option>";
+                            }
+                            else
+                            {
+                            echo "<option value='".$row['id']."'>".$row['nameC']."</option>";
+                            }                            
+                        }
+
+
+                    ?>
+
+                </select>
+
+           </div>
+            <div class="mb-3">
+                <label for="bachelorId" class="form-label">Bachelor Program</label>
+
+                <select class="form-select" aria-label="bachelorId" name="bachelorId" id="bachelorId">
+
+                    <?php
+
+                        $sql = "SELECT id, nameB FROM bachelorprogram";
+                        $result = $conn->query($sql);
+                        while($row=$result->fetch_assoc()){
+                            if($bachName == $row['nameB'])
+                            {
+                            echo "<option selected='selected' value='".$row['id']."'>".$row['nameB']."</option>";
+                            }
+                            else
+                            {
+                            echo "<option value='".$row['id']."'>".$row['nameB']."</option>";
+                            }                            
+                        }
+
+
+                    ?>
+
+                </select>
+
+           </div>
+
+            <label class="form-label"> Gender </label>
+            <br>
+            <input type="radio" name="gender" value="Male" <?php echo ($gender == 'Male') ?  "checked" : "" ;  ?>/> Male
+            <input type="radio" name="gender" value="Female" <?php echo ($gender == 'Female') ?  "checked" : "" ;  ?> /> Female
+            <br><br>
            
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
