@@ -33,12 +33,10 @@
             echo '<a class="nav-link active" aria-current="page" href="CollegeList.php" style="color: blue">College List</a>';
             echo '</li>';
             echo '<a class="nav-link active" aria-current="page" href="BachelorList.php" style="color: orange">Bachelor List</a>';
-            echo '</li>';
-            echo '<a class="nav-link active" aria-current="page" href="UserList.php" style="color: green">User List</a>';
-            echo '</li>';
+
             if($_SESSION['role'] == 'admin'){
               echo '<li class="nav-item">';
-              echo '<a class="nav-link active" aria-current="page" href="UserList.php">User List</a>';
+              echo '<a class="nav-link active" aria-current="page" href="UserList.php" style="color: green">User List</a>';
               echo '</li>';
             }
           }

@@ -10,7 +10,7 @@ include 'library/DBConnection.php';
 
 
 // sql to delete a record
-$sql = "DELETE FROM collegebrach WHERE id=?";
+$sql = "DELETE FROM bachelorprogram WHERE id=?";
 
 $stmt=$conn->prepare($sql);
 
@@ -22,7 +22,7 @@ $stmt->execute();
 $conn->close();
 
 
-header("Location: CollegeList.php");
+header("Location: BachelorList.php");
  
 
 

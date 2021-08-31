@@ -21,7 +21,7 @@ $sql = "INSERT INTO user (username, email, password, role) VALUES (?,?,?,?)";
 $stmt = $conn->prepare($sql);
 
 
-$role = 'user';
+$role = 'admin';
 $stmt->bind_param("ssss", $username, $email, $hashedPassword, $role);
 
 //send to database
