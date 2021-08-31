@@ -1,78 +1,92 @@
--- phpMyAdmin SQL Dump
--- version 5.0.4
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Mar 25, 2021 at 12:16 PM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 8.0.1
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+CREATE TABLE `bachelorprogram` (
+  `id` int(11) NOT NULL,
+  `nameB` varchar(256) NOT NULL,
+  `collegeId` int(11) NOT NULL,
+  `duration` int(10) NOT NULL
+);
 
 --
--- Database: `bookstore`
+-- Dumping data for table `bachelorprogram`
 --
+
+INSERT INTO `bachelorprogram` (`id`, `nameB`, `collegeId`, `duration`) VALUES
+(1, 'B.Sc. Computer Science', 2, 4),
+(2, 'Problem solving', 1, 3),
+(3, 'Software developement', 3, 3),
+(4, 'Psicology', 2, 5);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `book`
+-- Table structure for table `collegebrach`
 --
 
-CREATE TABLE `book` (
+CREATE TABLE `collegebrach` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `author` varchar(255) NOT NULL,
-  `publisher` varchar(255) NOT NULL,
-  `isbn` varchar(255) NOT NULL,
-  `published_date` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `nameC` varchar(256) NOT NULL,
+  `addressC` varchar(256) NOT NULL,
+  `phoneNumberC` varchar(256) NOT NULL
+);
 
 --
--- Dumping data for table `book`
+-- Dumping data for table `collegebrach`
 --
 
-INSERT INTO `book` (`id`, `name`, `author`, `publisher`, `isbn`, `published_date`) VALUES
-(1, 'The Dressmaker\'s Gift', 'Fiona Valpy', 'Lake Union Publishin', '9781542005135', '01/10/2019'),
-(6, 'A Slave of the Shadows', 'Naomi Finley 1', 'Huntson Press', 'B079LYSJP9', '05/03/2018'),
-(25, 'The book of books', 'Author X', 'Publisher X', '1234567890123', '11-02-2021'),
-(26, 'Book 11', 'Author x', 'Publisher 1', '1234567890123', '11-02-2021'),
-(28, 'Book 101', 'Auth 101', 'Pub 101', '1234567890123', '11/02/2021'),
-(29, 'Book 101', 'Auth 101', 'Pub 101', '1234567890123', '11/02/2021'),
-(30, 'Book 101', 'Auth 101', 'Pub 101', '1234567890123', '11/02/2021'),
-(31, 'Book 101', 'Auth 101', 'Pub 101', '1234567890123', '11/02/2021'),
-(32, 'dasd', 'dasd', 'Publisher 5', '1234567890123', 'adsa'),
-(33, 'dsada', 'dsada', 'Hacked Publisher', '1234567890123', '1231312');
+INSERT INTO `collegebrach` (`id`, `nameC`, `addressC`, `phoneNumberC`) VALUES
+(1, 'Dublin', '16 Dorset st. Lower, D01', '505663324'),
+(2, 'Belfast', 's/n Main street', '2155'),
+(3, 'Cork', '10000 different address', '11111111');
+
+-- --------------------------------------------------------
 
 --
--- Indexes for dumped tables
+-- Table structure for table `student`
 --
 
---
--- Indexes for table `book`
---
-ALTER TABLE `book`
-  ADD PRIMARY KEY (`id`);
+CREATE TABLE `student` (
+  `id` int(11) NOT NULL,
+  `name` varchar(256) NOT NULL,
+  `surname` varchar(256) NOT NULL,
+  `address` varchar(256) NOT NULL,
+  `phoneNumber` varchar(256) NOT NULL,
+  `dob` date NOT NULL,
+  `collegeId` int(10) NOT NULL,
+  `bachelorId` int(10) NOT NULL,
+  `gender` varchar(256) NOT NULL
+);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- Dumping data for table `student`
 --
 
---
--- AUTO_INCREMENT for table `book`
---
-ALTER TABLE `book`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
-COMMIT;
+INSERT INTO `student` (`id`, `name`, `surname`, `address`, `phoneNumber`, `dob`, `collegeId`, `bachelorId`, `gender`) VALUES
+(100, 'Pablo', 'Roca', '8 Garden Lane st.', '+353 089931353', '1995-10-21', 1, 1, 'Male'),
+(101, 'Carol', 'Propato', '76 Gardiner St. Upper', '+353 0894121', '1988-10-31', 1, 1, 'Female'),
+(103, 'Maya', 'Santos', '1000 Thomas street', '+35641200122', '1985-01-20', 2, 1, 'Female'),
+(121, 'Marisol', 'Gonzalez', 'Not given', '002212', '1988-06-11', 2, 2, 'Female'),
+(123, 'Juan', 'Caro', 'no address given', '0899639295', '1988-11-06', 1, 1, 'Male'),
+(126, 'test', 'test', 'test', 'test', '2000-01-01', 1, 1, 'Female');
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `username` varchar(256) NOT NULL,
+  `email` varchar(256) NOT NULL,
+  `password` varchar(256) NOT NULL,
+  `role` varchar(256) NOT NULL
+);
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `username`, `email`, `password`, `role`) VALUES
+(1, 'Fernando', 'noemail@canbe.ie', '$2y$10$15Fi8iZJ0N5bfJDj6qRpPuraNkWWw5bKx/ERWGrrs6yWoc4cEM5PW', 'user'),
+(2, 'Xiomara', 'noemail@canbe.ie', '$2y$10$gTqlbhIuDB1GJRny6R7hX.j4e9Oz825V5aXMYZDFNyDlfGTkOZDp.', 'user'),
+(5, 'admin', 'admin@webdamn.com', '$2y$10$pFvHhT3JsPx/z.rY5QyMWuxMEhaIbmnNzpTLBJqHXBiWKd0IAk0Wu', 'admin'),
+(6, 'AleUpdated', 'noemail', '$2y$10$Oonn9AtPtae7KHRiW3mrduV83Ur7/dOfOMrHtbohTclDO6ofP9gZO', 'user');
