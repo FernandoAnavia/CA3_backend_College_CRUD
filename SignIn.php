@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Sign In</title>
+<title>New User</title>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 <!-- JavaScript Bundle with Popper -->
@@ -36,6 +36,19 @@
                 <label for="confirmPassword" class="form-label">Confirm Password</label>
                 <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" aria-describedby="confirmPasswordHelp" value="" > 
             </div>
+
+            <div class="mb-3">
+                <label for="role" class="form-label">Role</label>
+
+                <select class="form-select" aria-label="role" name="role" id="role">
+                    <option value="user">user</option>
+                    <option value="admin">admin</option>
+                </select>
+
+
+                <span class="text-danger"><?= isset($error['role']) ? $error['role'] : '' ?> </span>
+           </div>
+
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
 

@@ -10,6 +10,7 @@ $username = $_POST['username'];
 $email = $_POST['email'];
 $password = $_POST['password'];
 $confirmPassword = $_POST['confirmPassword'];
+$role = $_POST['role'];
 
 if ($password === $confirmPassword){
     //encrypt the password
@@ -21,7 +22,6 @@ $sql = "INSERT INTO user (username, email, password, role) VALUES (?,?,?,?)";
 $stmt = $conn->prepare($sql);
 
 
-$role = 'admin';
 $stmt->bind_param("ssss", $username, $email, $hashedPassword, $role);
 
 //send to database
@@ -40,7 +40,7 @@ $conn->close();
 
 
 
-header("Location: logIn.php");
+header("Location: UserList.php");
 
 
 

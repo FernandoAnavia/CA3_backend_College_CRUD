@@ -52,7 +52,7 @@
           }
           else{
             echo "<a class='btn btn-primary' href='LogIn.php'>Log In</a>";
-            echo "<a class='btn btn-success' href='SignIn.php'>Sign In</a>";
+            //echo "<a class='btn btn-success' href='SignIn.php'>Sign In</a>";
             session_destroy();
           }
         ?>  

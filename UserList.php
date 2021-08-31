@@ -15,6 +15,8 @@ $result =  $conn->query($sql);
 
 ?>
 
+
+
 <div class="container">
     <table class="table">
                 <thead>
@@ -23,6 +25,9 @@ $result =  $conn->query($sql);
                         <th scope="col">Username</th>
                         <th scope="col">Email</th>
                         <th scope="col">Role</th>
+                        <?php
+                        echo '<th scope="col"><a class="btn btn-success" href="SignIn.php" role="new">New</a></th>';
+                        ?>
                     <tr>
                 </thead>
                 <tbody>
@@ -34,7 +39,9 @@ $result =  $conn->query($sql);
                             echo "<td>".$row['username']."</td>";
                             echo "<td>".$row['email']."</td>";
                             echo "<td>".$row['role']."</td>";
-                            echo "<td><a class='btn btn-danger' href='DeleteBook.php?id=".$row['id']."' role='delete'>Delete</a></td>";
+                            echo "<td><a class='btn btn-primary' href='UpdateUser.php?id=".$row['id']."' role='update'>Update</a></td>";
+                            //echo "<td><a class='btn btn-primary' href='Updatepwd.php?id=".$row['id']."' role='update'>Change Pwd</a></td>";
+                            echo "<td><a class='btn btn-danger' href='DeleteUser.php?id=".$row['id']."' role='delete'>Delete</a></td>";
                             echo "</tr>";
                         } 
                     }
@@ -44,4 +51,7 @@ $result =  $conn->query($sql);
 
 
 </div>
+
+
+
 
