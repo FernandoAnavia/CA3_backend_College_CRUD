@@ -40,7 +40,7 @@ $result =  $conn->query($sql);
                             echo "<td>".$row['email']."</td>";
                             echo "<td>".$row['role']."</td>";
                             echo "<td><a class='btn btn-primary' href='UpdateUser.php?id=".$row['id']."' role='update'>Update</a></td>";
-                            //echo "<td><a class='btn btn-primary' href='Updatepwd.php?id=".$row['id']."' role='update'>Change Pwd</a></td>";
+                            echo "<td><a class='btn btn-primary' href='ChangePwd.php?id=".$row['id']."' role='update'>Change Pwd</a></td>";
                             echo "<td><a class='btn btn-danger' href='DeleteUser.php?id=".$row['id']."' role='delete'>Delete</a></td>";
                             echo "</tr>";
                         } 

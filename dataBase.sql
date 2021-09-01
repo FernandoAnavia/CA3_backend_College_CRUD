@@ -1,21 +1,6 @@
-CREATE TABLE `bachelorprogram` (
-  `id` int(11) NOT NULL,
-  `nameB` varchar(256) NOT NULL,
-  `collegeId` int(11) NOT NULL,
-  `duration` int(10) NOT NULL
-);
+CREATE DATABASE IF NOT EXISTS student;
 
---
--- Dumping data for table `bachelorprogram`
---
-
-INSERT INTO `bachelorprogram` (`id`, `nameB`, `collegeId`, `duration`) VALUES
-(1, 'B.Sc. Computer Science', 2, 4),
-(2, 'Problem solving', 1, 3),
-(3, 'Software developement', 3, 3),
-(4, 'Psicology', 2, 5);
-
--- --------------------------------------------------------
+USE student;
 
 --
 -- Table structure for table `collegebrach`
@@ -36,6 +21,25 @@ INSERT INTO `collegebrach` (`id`, `nameC`, `addressC`, `phoneNumberC`) VALUES
 (1, 'Dublin', '16 Dorset st. Lower, D01', '505663324'),
 (2, 'Belfast', 's/n Main street', '2155'),
 (3, 'Cork', '10000 different address', '11111111');
+
+-- --------------------------------------------------------
+
+CREATE TABLE `bachelorprogram` (
+  `id` int(11) NOT NULL,
+  `nameB` varchar(256) NOT NULL,
+  `collegeId` int(11) NOT NULL,
+  `duration` int(10) NOT NULL
+);
+
+--
+-- Dumping data for table `bachelorprogram`
+--
+
+INSERT INTO `bachelorprogram` (`id`, `nameB`, `collegeId`, `duration`) VALUES
+(1, 'B.Sc. Computer Science', 2, 4),
+(2, 'Problem solving', 1, 3),
+(3, 'Software developement', 3, 3),
+(4, 'Psicology', 2, 5);
 
 -- --------------------------------------------------------
 
